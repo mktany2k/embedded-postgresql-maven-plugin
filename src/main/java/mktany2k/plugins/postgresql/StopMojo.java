@@ -8,8 +8,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 @Mojo(name = "stop")
 public class StopMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("In Stop. Received " + ShareObject.now);
+//        getLog().info("In Stop. Received " + ShareObject.now);
         ShareObject.process.stop();
+//        ShareObject.anotherProcess.stop();
         getLog().info("Database Stopped");
     }
 }
