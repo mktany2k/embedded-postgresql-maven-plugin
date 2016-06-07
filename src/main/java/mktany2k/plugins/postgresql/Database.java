@@ -2,7 +2,8 @@ package mktany2k.plugins.postgresql;
 
 public class Database {
     private String name;
-    private int port;
+    private String username;
+    private String password;
 
     public String getName() {
         return name;
@@ -12,11 +13,19 @@ public class Database {
         this.name = name;
     }
 
-    public int getPort() {
-        return port;
+    public String getUsername() {
+        return username;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

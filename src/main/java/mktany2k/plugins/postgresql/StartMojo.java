@@ -21,6 +21,9 @@ public class StartMojo extends AbstractMojo {
     @Parameter
     private Database database;
 
+    @Parameter
+    private Connection connection;
+
     public void execute() throws MojoExecutionException, MojoFailureException {
         PostgresStarter<PostgresExecutable, PostgresProcess> runtime = PostgresStarter.getDefaultInstance();
 
@@ -28,10 +31,10 @@ public class StartMojo extends AbstractMojo {
             PostgresConfig config =
                     new PostgresConfig(
                             Version.V9_5_0,
-                            new AbstractPostgresConfig.Net("localhost", database.getPort()),
+                            new AbstractPostgresConfig.Net(connection.getHost(), connection.getPort()),
                             new AbstractPostgresConfig.Storage(database.getName()),
                             new AbstractPostgresConfig.Timeout(),
-                            new AbstractPostgresConfig.Credentials("binlist_owner", "ias1234")
+                            new AbstractPostgresConfig.Credentials(database.getUsername(), database.getPassword())
                     );
 
             getLog().info(String.format("Configuration: %s%n%s", config.net().host(), config.net().port()));
